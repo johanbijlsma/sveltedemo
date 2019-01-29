@@ -1,7 +1,37 @@
-<h1>Hello {name}!</h1>
+<div class='widget-container'>
+	<Header title="Svelte Demo Site" subtitle="a little demo of what is possible with a new framework"/>
+</div>
 
-<style>
-	h1 {
+<div class="container">
+	<h1>Hello {name}!</h1>
+	<img src="https://svelte.technology/images/twitter-card.png" alt="Svelte logo"/>
+	<p class="intro">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod repellat magni quae. Modi aperiam voluptas eos nostrum. Et, sit commodi quam facere ipsa similique a! Iure totam libero incidunt neque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, accusamus eum. Maiores, sapiente nemo. Assumenda provident totam deserunt voluptas facere possimus eos, vero molestiae dolore. Facere dolores molestias accusamus rem? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae officiis, vero doloremque vel nemo mollitia dolorem similique. Eligendi, laudantium explicabo repellendus perferendis dolore aperiam dignissimos nihil eius sequi a veniam!
+
+	</p>
+</div>
+
+
+
+
+<style lang="sass" >
+	.container{
+		max-width: 1400px;
+  		margin: 0 auto;
+		  padding: 36px;
+		h1 {
 		color: purple;
+		}
 	}
 </style>
+
+
+
+<script>
+	import Header from './Header.html';
+
+	export default {
+		components: {
+			Header
+		}
+	};
+</script>
