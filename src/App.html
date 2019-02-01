@@ -73,19 +73,27 @@
 	    flex-direction: row;
 	    margin: 3rem 10px 10px 10px;
 	    flex-wrap: wrap;
+		   &:not(:hover){
+			 .card:nth-child(1){
+				 flex-grow: 2;
+			 }
+
+		  }
 	    .card {
 	      box-shadow: 0 0 4px rgba(black, 0.25);
 	      padding: 20px;
 	      margin: 0 10px;
 	      position: relative;
-	      flex-grow: 2;
+	      flex-grow: 0;
 	      min-height: 200px;
 	      margin-bottom: 10px;
+	      transition: all 1000ms 20ms ease-in-out;
+
 	      &-title {
 	        position: relative;
 	        z-index: 100;
-			color:	#fff;
-			text-shadow: 0 0 3px rgba(black, 0.4);
+	        color: #fff;
+	        text-shadow: 0 0 3px rgba(black, 0.4);
 	      }
 	      &-image {
 	        position: absolute;
@@ -98,7 +106,7 @@
 	      &-content {
 	        position: relative;
 	        z-index: 100;
-			color:	#fff;
+	        color: #fff;
 	      }
 	      &::after {
 	        content: "";
@@ -111,8 +119,28 @@
 	        left: 0;
 	        width: 100%;
 	        box-shadow: inset 0 0 120px;
-			pointer-events: none;
+	        pointer-events: none;
 	      }
+	      &:hover, &:focus {
+	        cursor: pointer;
+	        box-shadow: 0 0 6px rgba(darkturquoise, 0.25);
+	        transition: all 20ms ease-in-out;
+	        flex-grow: 2;
+	        &::after {
+	          content: "";
+	          display: block;
+	          background: rgba(darkred, 0.4);
+	          z-index: 2;
+	          position: absolute;
+	          height: 100%;
+	          top: 0;
+	          left: 0;
+	          width: 100%;
+	          box-shadow: inset 0 0 120px;
+	          pointer-events: none;
+	        }
+	      }
+
 	    }
 	    .placeholder {
 	      background: #e5e5e5;
@@ -120,7 +148,7 @@
 	      border-bottom: 10px solid darkturquoise;
 	      height: 100px;
 	      position: relative;
-		  z-index: 100;
+	      z-index: 100;
 	    }
 	  }
 	}
