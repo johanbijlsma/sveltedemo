@@ -23,7 +23,8 @@ const app = new App({
 		<p class="card-content">{card.content}</p>
 	</div>
 	{/each}
-</div>`
+</div>`,
+	codeVisible: false
 
 	}
 });

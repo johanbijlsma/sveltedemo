@@ -21,7 +21,7 @@ Super fast, rock solid. Compile-time static analysis ensures the browser does no
 		<h2>Each blocks example</h2>
 		<button on:click="set({ codeVisible: !codeVisible })">See the code</button>
 
-		<pre hidden={!codeVisible}><code class="language-html" >
+		<pre hidden={!codeVisible} transition:slide><code class="language-html" >
 		 {code}
 		</code></pre>
 
@@ -162,11 +162,14 @@ Super fast, rock solid. Compile-time static analysis ensures the browser does no
 
 <script>
 	import Header from "./Header.html";
+  import { slide } from 'svelte-transitions';
 
 	export default {
 	  components: {
 	    Header
-	  }
+		},
+    transitions: { slide }
+
 	};
 </script>
 
