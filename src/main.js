@@ -10,6 +10,20 @@ const app = new App({
 			{title: 'Article 4', content: 'Article 4: Lorem ipsum', imgUrl: ''},
 			{title: 'Article 5', content: 'Article 5: Lorem ipsum', imgUrl: 'https://images.unsplash.com/photo-1466943908695-cca6dee39aa5?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80'},
 		],
+	code: `<div class="card-container">
+	{#each cardsData as card}
+	<div class="card">
+		<h2 class="card-title">{card.title}</h2>
+		{#if card.imgUrl}
+		<img class="card-image" src={card.imgUrl} alt="">
+		{:else}
+		<div class="placeholder error">
+			No image found...</div>
+		{/if}
+		<p class="card-content">{card.content}</p>
+	</div>
+	{/each}
+</div>`
 
 	}
 });
