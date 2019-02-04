@@ -1,5 +1,4 @@
 import App from './App.html';
-
 const app = new App({
 	target: document.body,
 	data: {
@@ -10,8 +9,10 @@ const app = new App({
 			{title: 'Article 3', content: 'Article 3: Lorem ipsum', imgUrl: 'https://images.unsplash.com/photo-1545181978-7c80df85b296?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2008&q=80'},
 			{title: 'Article 4', content: 'Article 4: Lorem ipsum', imgUrl: ''},
 			{title: 'Article 5', content: 'Article 5: Lorem ipsum', imgUrl: 'https://images.unsplash.com/photo-1466943908695-cca6dee39aa5?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80'},
-		]
+		],
+
 	}
 });
+
 
 export default app;

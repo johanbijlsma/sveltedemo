@@ -11,7 +11,7 @@
 		ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae officiis, vero doloremque vel nemo mollitia dolorem
 		similique. Eligendi, laudantium explicabo repellendus perferendis dolore aperiam dignissimos nihil eius sequi a
 		veniam!
-		<img src="https://svelte.technology/images/twitter-card.png" alt="Svelte logo" />
+		<img src="./../public/assets/twitter-card.png" alt="Svelte logo" />
 		<p class="intro">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod repellat magni quae. Modi aperiam
 			voluptas eos nostrum. Et, sit commodi quam facere ipsa similique a! Iure totam libero incidunt neque. Lorem ipsum
 			dolor sit amet consectetur adipisicing elit. Laudantium, accusamus eum. Maiores, sapiente nemo. Assumenda provident
@@ -179,9 +179,16 @@
 <script>
 	import Header from "./Header.html";
 
+	const Feed = require('rss-to-json');
+
+	Feed.load('https://codek.tv/feed/', function(err, rss){
+			console.log(rss);
+	});
+
 	export default {
 	  components: {
 	    Header
 	  }
 	};
 </script>
+
