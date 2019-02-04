@@ -1,3 +1,7 @@
+body {
+    font-size: 18px;
+}
+
 header{
     background: rgba(black, 0.75);
     color: rgba(white, 0.8);
@@ -6,4 +10,24 @@ header{
         font-size: 3vw;
         text-shadow: 3px 3px 5% rgba(white, 0.8);
         }
+}
+
+.card-container{
+    flex: 1 1 100%;
+    flex-direction: row;
+    .card{
+        min-width: 200px;
+        box-shadow: 0 0 4px rgba(black, 0.25);
+        &-title{
+
+        }
+        &-image{
+            width: 200px;
+            background-color: #e5e5e5;
+        }
+        &-content{
+
+        }
+
+    }
 }
