@@ -4,4 +4,4 @@ Wanted to check out the Svelte package myself, so started building out a demo si
 
 So far so good.
 
-Based on the Svelte JavaScript framework (Sveltejs on Github)[https://github.com/sveltejs/svelte] by Rich Harris
+Based on the Svelte JavaScript framework (https://github.com/sveltejs/svelte) by Rich Harris
