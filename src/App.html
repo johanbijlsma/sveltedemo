@@ -45,8 +45,18 @@ Super fast, rock solid. Compile-time static analysis ensures the browser does no
 
 		<p>As with many JavaScript frameworks, you can a </p>
 
+		<div class='widget-container'>
+			<News />
+			<!-- {#each feed as card}
+				<p>test</p>
+				{/each} -->
+	<!-- {#each feed as card}
+			<div class="card">
+				<!-- <h2 class="card-title">{entry.title}</h2> -->
+			<!-- </div>
+			{/each} -->
+		</div>
 </div>
-
 
 
 
@@ -162,11 +172,13 @@ Super fast, rock solid. Compile-time static analysis ensures the browser does no
 
 <script>
 	import Header from "./Header.html";
+	import News from "./News.html";
   import { slide } from 'svelte-transitions';
 
 	export default {
 	  components: {
-	    Header
+			Header,
+			News
 		},
     transitions: { slide }
 

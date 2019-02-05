@@ -1,4 +1,24 @@
 import App from './App.html';
+
+import "../public/assets/rss-parser.min.js";
+
+const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"
+const rss_NOS = "http://feeds.nos.nl/nosnieuwsalgemeen";
+const rss_NU = "https://www.nu.nl/rss";
+
+const newsArray = [];
+
+let parser = new RSSParser();
+parser.parseURL(CORS_PROXY + rss_NU, function(err, feed) {
+  console.log(feed);
+  feed.items.forEach(function(entry) {
+	console.log(entry.title + ':' + entry.link);
+	console.log(entry);
+	newsArray.push(entry);
+	console.log(newsArray);
+  })
+})
+
 const app = new App({
 	target: document.body,
 	data: {
@@ -23,11 +43,16 @@ const app = new App({
 		<p class="card-content">{card.content}</p>
 	</div>
 	{/each}
-</div>`,
-	codeVisible: false
-
-	}
+	</div>`,
+	codeVisible: false,
+	feed: [newsArray]
+	},
 });
 
 
+
+
+
 export default app;
+
+
