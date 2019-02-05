@@ -1,6 +1,6 @@
-var gulp =  require ('gulp');
+import { task } from 'gulp';
 
 // development tasks
-gulp.task('travis', ['build', 'testServerJS'], function() {
+task('travis', ['build', 'testServerJS'], function() {
     process.exit(0);
 });
