@@ -3,4 +3,4 @@ language: node_js
 node_js:
   - "stable"
 
-script: gulp travis
+script: npm install gulp && gulp travis
