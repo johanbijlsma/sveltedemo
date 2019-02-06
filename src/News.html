@@ -1,17 +1,63 @@
 <div class="card-container">
-			<!-- {#each feed as card}
-			<div class="card">
-				<h2 class="card-title">{entry.title}</h2> -->
-				<!-- {#if entry.enclosure.url}
-				<img class="card-image" src={entryenclosure.url} alt="">
-				{:else}
-				<div class="placeholder error">
-					No image found...</div>
-				{/if}
-				<p class="card-content">{entry.content}</p> -->
-			<!-- </div>
-			{/each} -->
-News component
-		</div>
+
+	<h1>News component</h1>
+
+	<article>
+		<!-- <a href={newFeed.url}>
+		<h1>{newFeed.title}</h1>
+		<small>{newFeed.domain}</small>
+	</a> -->
+
+		<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur cum sit, ullam fugit qui ea aliquam eum
+			necessitatibus laborum minima unde omnis facilis, ducimus ex sapiente reprehenderit veniam delectus aliquid.</p>
+	</article>
+
+	<pre><code class="language-json">{newsArray}</code> </pre>
+
+</div>
 
 
+
+<script>
+  import "../public/assets/rss-parser.min.js";
+
+  const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
+  // const rss_NOS = "http://feeds.nos.nl/nosnieuwsalgemeen";
+  const rss_NU = "https://www.nu.nl/rss";
+
+  // // const newsArray = [];
+;
+  let parser = new RSSParser();
+  parser.parseURL(CORS_PROXY + rss_NU, function(err, feed) {
+    console.log(feed);
+    const newsArray = [];
+    feed.items.forEach(function(entry) {
+  	// console.log(entry.title + ':' + entry.link);
+  	// console.log(entry);
+      console.log(newsArray);
+
+    })
+  })
+  export default {
+    data() {
+        },
+    oncreate() {
+      console.log(this.options);
+    //   this.getcontent();
+    //   console.log(this.getcontent());
+    },
+    // methods: {
+    //   async getcontent() {
+    //     await parser.parseURL(CORS_PROXY + rss_NU, function(err, feed) {
+    //       const newsArray = [];
+    //       feed.items.forEach(function(entry) {
+    //         newsArray.push(entry);
+    //       });
+    //     });
+    //   }
+    // }
+  };
+
+
+
+</script>

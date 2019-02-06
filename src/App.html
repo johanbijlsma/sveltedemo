@@ -4,18 +4,25 @@
 
 <div class="container">
 	<h1>Svelte?</h1>
-	<p class="intro"><strong>"The magical disappearing UI framework"</strong>, thats the claim the <span class="svelte">Svelte</span> website makes (<a href="https://svelte.technology" target="_blank">link</a>).
-And it continues: <em> "The web's JavaScript bloat crisis, solved. <span class="svelte">Svelte</span> turns your templates into tiny, framework-less vanilla JavaScript.
-Simple and familiar. Build apps out of composable, easy-to-write blocks using languages you already know.
-Super fast, rock solid. Compile-time static analysis ensures the browser does no more work than it needs to." </em>
-		<img src="./../assets/twitter-card.png" alt="Svelte logo" />
-		<p class="intro">So if I understood that correctly, you can use <span class="svelte">Svelte</span> as a JavaScript framework, without massive libraries that you need to deploy to your webserver. Simply run it from command line while deving, and then do a <mark>npm build</mark> to make a distribution package. So I thought, lets give it a try...</p>
+	<div class="intro"><strong>"The magical disappearing UI framework"</strong>, thats the claim the <span class="svelte">Svelte</span>
+		website makes (<a href="https://svelte.technology" target="_blank">link</a>).
+		And it continues: <em> "The web's JavaScript bloat crisis, solved. <span class="svelte">Svelte</span> turns your
+			templates into tiny, framework-less vanilla JavaScript.
+			Simple and familiar. Build apps out of composable, easy-to-write blocks using languages you already know.
+			Super fast, rock solid. Compile-time static analysis ensures the browser does no more work than it needs to." </em>
+		<p class="intro">		<img src="./../assets/twitter-card.png" alt="Svelte logo" />
+So if I understood that correctly, you can use <span class="svelte">Svelte</span> as a JavaScript
+			framework, without massive libraries that you need to deploy to your webserver. Simply run it from command line
+			while deving, and then do a <code class="language-html">npm build</code> to make a distribution package. So I thought, lets give it a
+			try...</p>
 
-		<p><span class="svelte">Svelte</span> works pretty straight forward, just like other JavaScript frameworks you can build components, and use curly brackets to template your pages. To make things easier, <span class="svelte">Svelte</span> comes with a couple of build in blocks:</p>
+		<p><span class="svelte">Svelte</span> works pretty straight forward, just like other JavaScript frameworks you can
+			build components, and use curly brackets to template your pages. To make things easier, <span class="svelte">Svelte</span>
+			comes with a couple of build in blocks:</p>
 		<ul>
-		<li>If blocks - render if condition is met</li>
-		<li>Each blocks - for itereating over an array of items</li>
-		<li>Await blocks - for fetching data from external sources. The await blocks also give methods to handle errors</li>
+			<li>If blocks - render if condition is met</li>
+			<li>Each blocks - for itereating over an array of items</li>
+			<li>Await blocks - for fetching data from external sources. The await blocks also give methods to handle errors</li>
 		</ul>
 
 		<h2>Each blocks example</h2>
@@ -41,147 +48,181 @@ Super fast, rock solid. Compile-time static analysis ensures the browser does no
 
 		</div>
 
-		<h3>ok, what happend here?</h3>
+		<!-- <h3>ok, what happend here?</h3>
 
-		<p>As with many JavaScript frameworks, you can a </p>
+		<p>As with many JavaScript frameworks, you can a </p> -->
+		<!-- <div class="card-container">
+			{#if feed}
+				{#each feed as card}
+				<p>{feed}</p>
+				{/each}
+			{:else}
+			<div class="placeholder error">
+				nog geen nieuws gevonden...</div>
+			{/if}
+		</div> -->
+
+		<!-- <div class="card-container">
+			{#each feed as card}
+			<div class="card">
+				<h2 class="card-title">{feed}</h2>
+				{#if card.imgUrl}
+				<img class="card-image" src={card.imgUrl} alt="">
+				{:else}
+				<div class="placeholder error">
+					No image found...</div>
+				{/if}
+				<p class="card-content">{feed.content}</p>
+			</div>
+			{/each}
+
+		</div> -->
+
+<!-- <pre><code class="language-json">{feed}</code> </pre> -->
+
 
 		<div class='widget-container'>
-			<News />
-			<!-- {#each feed as card}
-				<p>test</p>
-				{/each} -->
-	<!-- {#each feed as card}
-			<div class="card">
-				<!-- <h2 class="card-title">{entry.title}</h2> -->
-			<!-- </div>
-			{/each} -->
+			<News/>
 		</div>
-</div>
+	</div>
+	</div>
 
 
 
-<style lang="sass" >
-	.container {
-	  max-width: 1400px;
-	  margin: 0 auto;
-	  padding: 36px;
-	  h1 {
-	    color: purple;
-	  }
-	  p img {
-	    border-top: 1px solid #cccccc;
-	    border-bottom: 1px solid #cccccc;
-	    float: right;
-	    width: 250px;
-	    margin: 10px;
-	    @media screen and (max-width: 500px) {
-	      float: none;
-	      width: 100%;
-	    }
-	  }
-	  .card-container {
-	    display: flex;
-	    flex-direction: row;
-	    margin: 3rem 10px 10px 10px;
-	    flex-wrap: wrap;
-	    &:not(:hover) {
-	      .card:nth-child(1) {
-	        flex-grow: 2;
-	      }
-	    }
-	    .card {
-	      box-shadow: 0 0 4px rgba(black, 0.25);
-	      padding: 20px;
-	      margin: 0 10px;
-	      position: relative;
-	      flex-grow: 0;
-	      min-height: 200px;
-	      margin-bottom: 10px;
-	      transition: all 1000ms 20ms ease-in-out;
 
-	      &-title {
-	        position: relative;
-	        z-index: 100;
-	        color: #fff;
-	        text-shadow: 0 0 3px rgba(black, 0.4);
-	      }
-	      &-image {
-	        position: absolute;
-	        top: 0;
-	        left: 0;
-	        width: 100%;
-	        height: 100%;
-	        object-fit: cover;
-	      }
-	      &-content {
-	        position: relative;
-	        z-index: 100;
-	        color: #fff;
-	      }
-	      &::after {
-	        content: "";
-	        display: block;
-	        background: #00ced140;
-	        z-index: 2;
-	        position: absolute;
-	        height: 100%;
-	        top: 0;
-	        left: 0;
-	        width: 100%;
-	        box-shadow: inset 0 0 120px;
-	        pointer-events: none;
-	      }
-	      &:hover,
-	      &:focus {
-	        cursor: pointer;
-	        box-shadow: 0 0 6px rgba(darkturquoise, 0.25);
-	        transition: all 20ms ease-in-out;
-	        flex-grow: 2;
-	        &::after {
-	          content: "";
-	          display: block;
-	          background: rgba(darkred, 0.4);
-	          z-index: 2;
-	          position: absolute;
-	          height: 100%;
-	          top: 0;
-	          left: 0;
-	          width: 100%;
-	          box-shadow: inset 0 0 120px;
-	          pointer-events: none;
-	        }
-	      }
-	    }
-	    .placeholder {
-	      background: #e5e5e5;
-	      padding: 10px;
-	      border-bottom: 10px solid darkturquoise;
-	      height: 100px;
-	      position: relative;
-	      z-index: 100;
-	    }
-	  }
-		span.svelte{
-			font-weight: 700;
-			color: #ba0019;
+	<style lang="sass">
+		.container {
+			max-width: 1400px;
+			margin: 0 auto;
+			padding: 36px;
+
+			h1 {
+				color: purple;
+			}
+
+			p img {
+				border-top: 1px solid #cccccc;
+				border-bottom: 1px solid #cccccc;
+				float: right;
+				width: 250px;
+				margin: 10px;
+
+				@media screen and (max-width: 500px) {
+					float: none;
+					width: 100%;
+				}
+			}
+
+			.card-container {
+				display: flex;
+				flex-direction: row;
+				margin: 3rem 10px 10px 10px;
+				flex-wrap: wrap;
+
+				&:not(:hover) {
+					.card:nth-child(1) {
+						flex-grow: 2;
+					}
+				}
+
+				.card {
+					box-shadow: 0 0 4px rgba(black, 0.25);
+					padding: 20px;
+					margin: 0 10px;
+					position: relative;
+					flex-grow: 0;
+					min-height: 200px;
+					margin-bottom: 10px;
+					transition: all 1000ms 20ms ease-in-out;
+
+					&-title {
+						position: relative;
+						z-index: 100;
+						color: #fff;
+						text-shadow: 0 0 3px rgba(black, 0.4);
+					}
+
+					&-image {
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+						object-fit: cover;
+					}
+
+					&-content {
+						position: relative;
+						z-index: 100;
+						color: #fff;
+					}
+
+					&::after {
+						content: "";
+						display: block;
+						background: #00ced140;
+						z-index: 2;
+						position: absolute;
+						height: 100%;
+						top: 0;
+						left: 0;
+						width: 100%;
+						box-shadow: inset 0 0 120px;
+						pointer-events: none;
+					}
+
+					&:hover,
+					&:focus {
+						cursor: pointer;
+						box-shadow: 0 0 6px rgba(darkturquoise, 0.25);
+						transition: all 20ms ease-in-out;
+						flex-grow: 2;
+
+						&::after {
+							content: "";
+							display: block;
+							background: rgba(darkred, 0.4);
+							z-index: 2;
+							position: absolute;
+							height: 100%;
+							top: 0;
+							left: 0;
+							width: 100%;
+							box-shadow: inset 0 0 120px;
+							pointer-events: none;
+						}
+					}
+				}
+
+				.placeholder {
+					background: #e5e5e5;
+					padding: 10px;
+					border-bottom: 10px solid darkturquoise;
+					height: 100px;
+					position: relative;
+					z-index: 100;
+				}
+			}
+
+		  span.svelte  {
+		    font-weight: 700;
+		    color: #ba0019;
+		  }
 		}
-	}
-</style>
+	</style>
 
 
 
-<script>
-	import Header from "./Header.html";
+	<script>
+		import Header from "./Header.html";
 	import News from "./News.html";
-  import { slide } from 'svelte-transitions';
+	import { slide } from "svelte-transitions";
 
 	export default {
 	  components: {
-			Header,
-			News
+	    Header,
+	    News
 		},
-    transitions: { slide }
-
+	  transitions: { slide }
 	};
-</script>
-
+	</script>
