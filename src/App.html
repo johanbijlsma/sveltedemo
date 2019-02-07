@@ -33,7 +33,7 @@
 		 {code}
 		</code></pre>
 
-		<div class="card-container">
+		<div class="card-container demo">
 			{#each cardsData as card}
 			<div class="card">
 				<h2 class="card-title">{card.title}</h2>
@@ -63,32 +63,36 @@
 			{/if}
 		</div> -->
 
-		<h3>Loading news content (powered by Nu.nl)</h3>
-		<div class="card-container">
-		{#if NuNLLatestNews.items}
+		<h2>Loading news content <img class="logo-feed" src="./../assets/nu_400x400.jpg" alt="logo nu.nl"></h2>
+		<p class="intro">Newsfeed powered by nu.nl. <span class="meta">last updated at {NuNLLatestNews.lastBuildDate}</span></p>
+		<div class="card-container news">
+			{#if NuNLLatestNews}
 			{#each NuNLLatestNews.items as card}
-			<div class="card">
-				<h2 class="card-title">{card.title}</h2>
-				{#if card.enclosure.url}
-				<img class="card-image" src={card.enclosure.url} alt="">
-				{:else}
-				<div class="placeholder error">
-					No image found...</div>
-				{/if}
-				<p class="card-content">{card.content}</p>
-			</div>
+			<a class="card-link" href="{card.link}" target="_blank">
+				<div class="card">
+					<span class="tag">{card.categories[0]}</span>
+					<h2 class="card-title">{card.title}</h2>
+					{#if card.enclosure.url}
+					<img class="card-image" src={card.enclosure.url} alt="">
+					{:else}
+					<div class="placeholder error ">
+						No image found...</div>
+					{/if}
+					<p class="card-content">{@html card.content}</p>
+				</div>
+			</a>
 			{/each}
-		{:else}
-		<div class="placeholder error">Content has not loaded. please refresh to try again.
-		</div>
-		{/if}
+			{:else}
+			<div class="placeholder error large">Content has not loaded. please refresh to try again.
+			</div>
+			{/if}
 		</div>
 
 
 		<!-- <pre><code class="language-json">{feed}</code> </pre> -->
 
 
-		<pre><code class="language-json">{NuNLLatestNews.items}</code> </pre>
+
 
 
 
@@ -121,14 +125,29 @@
 	    }
 	  }
 
+	  img.logo-feed {
+	    float: right;
+	    width: 80px;
+	  }
+
+	  span.meta {
+	    color: #b7b1b1;
+	    text-decoration: underline;
+	  }
+
 	  .card-container {
 	    display: flex;
 	    flex-direction: row;
 	    margin: 3rem 10px 10px 10px;
 	    flex-wrap: wrap;
 
-	    &:not(:hover) {
+	    &.demo:not(:hover) {
 	      .card:nth-child(1) {
+	        flex-grow: 2;
+	      }
+	    }
+	    &.demo {
+	      .card:hover {
 	        flex-grow: 2;
 	      }
 	    }
@@ -142,13 +161,20 @@
 	      min-height: 200px;
 	      margin-bottom: 10px;
 	      transition: all 1000ms 20ms ease-in-out;
-
+	      opacity: 0;
+	      animation: appear 200ms 800ms linear forwards;
 	      &-title {
 	        position: relative;
 	        z-index: 100;
 	        color: #fff;
 	        text-shadow: 0 0 3px rgba(black, 0.4);
-	        max-width: calc(100vw/5);
+	        @media (min-width: 1200px) {
+	          max-width: calc(100vw / 6);
+	        }
+	        max-width: calc(100vw / 3);
+	        @media (max-width: 680px) {
+	          max-width: 100vw;
+	        }
 	      }
 
 	      &-image {
@@ -164,14 +190,19 @@
 	        position: relative;
 	        z-index: 100;
 	        color: #fff;
-					max-width: calc(100vw/5);
-
+	        @media (min-width: 1200px) {
+	          max-width: calc(100vw / 6);
+	        }
+	        max-width: calc(100vw / 3);
+	        @media (max-width: 680px) {
+	          max-width: 100vw;
+	        }
 	      }
 
 	      &::after {
 	        content: "";
 	        display: block;
-	        background: #00ced140;
+	        background: #00ced165;
 	        z-index: 2;
 	        position: absolute;
 	        height: 100%;
@@ -184,10 +215,8 @@
 
 	      &:hover,
 	      &:focus {
-	        cursor: pointer;
 	        box-shadow: 0 0 6px rgba(darkturquoise, 0.25);
 	        transition: all 20ms ease-in-out;
-	        flex-grow: 2;
 
 	        &::after {
 	          content: "";
@@ -203,6 +232,20 @@
 	          pointer-events: none;
 	        }
 	      }
+	      span.tag {
+	        position: absolute;
+	        top: 0px;
+	        right: 0px;
+	        z-index: 10;
+	        color: tomato;
+	        background: #fff;
+	        padding: 5px 10px;
+	        font-size: small;
+	        border-radius: 0px 0 0 10px;
+	        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.35);
+	        border-left: 1px solid tomato;
+	        border-bottom: 1px solid tomato;
+	      }
 	    }
 
 	    .placeholder {
@@ -212,12 +255,55 @@
 	      height: 100px;
 	      position: relative;
 	      z-index: 100;
+	      &.large {
+	        opacity: 0;
+	        width: 100%;
+	        text-align: center;
+	        margin-bottom: 2rem;
+	        padding: 4rem;
+	        box-sizing: border-box;
+	        animation: appear 200ms 800ms linear forwards,
+	          animatedborder 2400ms cubic-bezier(0.6, -0.28, 0.74, 0.05) infinite;
+	        border-bottom: 10px solid transparent;
+	      }
+	    }
+	    &.news:hover {
+	      flex-grow: 0;
+	    }
+	    a.card-link {
+	      outline: none;
+	      text-decoration: none;
+	      color: currentColor;
+	      display: flex;
+	      img {
+	        outline: none;
+	        border: none;
+	      }
 	    }
 	  }
 
 	  span.svelte {
 	    font-weight: 700;
 	    color: #ba0019;
+	  }
+	  @keyframes animatedborder {
+	    from {
+	      border-bottom: 10px solid rgba(darkturquoise, 0.5);
+	    }
+	    to {
+	      border-bottom: 10px solid rgba(rgb(25, 128, 129), 0.8);
+	    }
+	  }
+
+	  @keyframes appear {
+	    from {
+	      opacity: 0;
+	      transform: scale(0.8, 0.8);
+	    }
+	    to {
+	      opacity: 1;
+	      transform: scale(1, 1);
+	    }
 	  }
 	}
 </style>
@@ -234,5 +320,4 @@
 	  },
 	  transitions: { slide }
 	};
-
 </script>
