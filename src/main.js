@@ -256,6 +256,7 @@ import "../public/assets/rss-parser.min.js";
 
   let parser = new RSSParser();
    parser.parseURL(CORS_PROXY + rss_NU, function(err, feed) {
+//    parser.parseURL(rss_NU, function(err, feed) {
     console.log(feed);
     const newsArray = [];
 	newsArray.push(feed);
