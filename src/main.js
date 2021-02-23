@@ -253,7 +253,7 @@ import "../public/assets/rss-parser.min.js";
 
   const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
   // const rss_NOS = "http://feeds.nos.nl/nosnieuwsalgemeen";
-  const rss_NU = "https://www.nu.nl/rss";
+  const rss_NU = "https://www.nu.nl/rss/algemeen";
 
   let parser = new RSSParser();
    parser.parseURL(CORS_PROXY + rss_NU, function(err, feed) {
