@@ -10,7 +10,7 @@
 			templates into tiny, framework-less vanilla JavaScript.
 			Simple and familiar. Build apps out of composable, easy-to-write blocks using languages you already know.
 			Super fast, rock solid. Compile-time static analysis ensures the browser does no more work than it needs to." </em>
-		<p class="intro"> <img src="./../assets/twitter-card.png" alt="Svelte logo" />
+		<p class="intro"> <img src="./assets/twitter-card.png" alt="Svelte logo" />
 			So if I understood that correctly, you can use <span class="svelte">Svelte</span> as a JavaScript
 			framework, without massive libraries that you need to deploy to your webserver. Simply run it from command line
 			while deving, and then do a <code class="language-html">npm build</code> to make a distribution package. So I
@@ -63,7 +63,7 @@
 			{/if}
 		</div> -->
 
-		<h2>Loading news content <img class="logo-feed" src="./../assets/nu_400x400.jpg" alt="logo nu.nl"></h2>
+		<h2>Loading news content <img class="logo-feed" src="../assets/nu_400x400.jpg" alt="logo nu.nl"></h2>
 		<p class="intro">Newsfeed powered by nu.nl. <span class="meta">last updated at {NuNLLatestNews.lastBuildDate}</span></p>
 		<div class="card-container news">
 			{#if NuNLLatestNews}
@@ -93,9 +93,75 @@
 			</div>
 			{/if}
 		</div>
+		<!-- <h2>Archived news</h2>
 
+			<div class="card-container news">
+			{#if NuNLArchivedNews}
+			{#each NuNLArchivedNews as card}
+			<a class="card-link" href="{card.link}" target="_blank">
+				<div class="card">
+					{#if card.categories}
+					<div class="card-container__tag">
+						{#each card.categories as tag}
+						<span class="tag">{tag}</span>
+						{/each}
+					</div>
+					{/if}
+					<h2 class="card-title">{card.title}</h2>
+					<!-- {#if card.enclosure.url}
+					<img class="card-image" src={card.enclosure.url} alt="">
+					{:else}
+					<div class="placeholder error ">
+						No image found...</div>
+					<!-- {/if}
+					<p class="card-content">{@html card.content}</p>
+				</div>
+			</a>
+			{/each}
+			{:else}
+			<div class="placeholder error large">Content has not loaded. please refresh to try again.
+			</div>
+			{/if}
+		</div> -->
 
-		<!-- <pre><code class="language-json">{feed}</code> </pre> -->
+			<h2>Mock feed (old news)</h2>
+
+			<div class="card-container news">
+			{#if NuNLArchivedNews}
+			{#each feedDump.items as card}
+			<a class="card-link" href="{card.link}" target="_blank">
+				<div class="card">
+					{#if card.categories}
+					<div class="card-container__tag">
+						{#each card.categories as tag}
+						<span class="tag">{tag}</span>
+						{/each}
+					</div>
+					{/if}
+					<h2 class="card-title">{card.title}</h2>
+					{#if card.enclosure.url}
+					<img class="card-image" src={card.enclosure.url} alt="">
+					{:else}
+					<div class="placeholder error ">
+						No image found...</div>
+					{/if}
+					<p class="card-content">{@html card.content}</p>
+				</div>
+			</a>
+			{/each}
+			{:else}
+			<div class="placeholder error large">Content has not loaded. please refresh to try again.
+			</div>
+			{/if}
+		</div>
+
+<!-- {#if NuNLArchivedNews}
+		<pre><code class="language-json">{NuNLArchivedNews[0].items}</code> </pre>
+		{:else}
+		<div class="placeholder error ">
+					Archive not loaded yet...</div>
+
+{/if} -->
 
 
 
@@ -239,8 +305,8 @@
 				        }
 				      }
 				      .card-container__tag {
-								transform: translate(0, -10px);
 				        span.tag {
+									opacity: 0;
 				          position: relative;
 				          z-index: 10;
 				          color: tomato;
@@ -259,7 +325,7 @@
 				    .placeholder {
 				      background: #e5e5e5;
 				      padding: 10px;
-				      border-bottom: 10px solid darkturquoise;
+				      border-bottom: 10px solid #00ced1;
 				      height: 100px;
 				      position: relative;
 				      z-index: 100;
@@ -308,6 +374,10 @@
 				    }
 				  }
 
+					.card-container.news  a:hover .card .tag{
+						animation: appear 200ms 800ms linear forwards;
+
+					}
 				  span.svelte {
 				    font-weight: 700;
 				    color: #ba0019;
@@ -331,6 +401,9 @@
 				      transform: scale(1, 1);
 				    }
 				  }
+					.appear{
+				      animation: appear 200ms 800ms linear forwards;
+					}
 				}
 </style>
 
@@ -344,6 +417,10 @@
 	  components: {
 	    Header
 	  },
-	  transitions: { slide }
+		transitions: { slide },
+		oncreate() {
+			console.log(this.options);
+		}
 	};
+
 </script>
